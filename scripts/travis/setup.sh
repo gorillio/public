@@ -19,6 +19,13 @@ echo "Restarting Docker service to put in effect"
 echo "==============================================================================================================="
 sudo service docker restart
 
+DOCKER_COMPOSE_VERSION="1.25.5"
+echo "==============================================================================================================="
+echo "Docker Compose for BUILDKIT support: Version: ${DOCKER_COMPOSE_VERSION}"
+echo "==============================================================================================================="
+sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+docker-compose version
+
 echo "==============================================================================================================="
 echo "Setup GCloud"
 echo "==============================================================================================================="
@@ -33,5 +40,6 @@ echo "==========================================================================
 export SHORT_SHA=$(git rev-parse --short HEAD)
 export SHA=$(git rev-parse HEAD)
 export DOCKER_BUILDKIT=1
+export COMPOSE_DOCKER_CLI_BUILD=1
 export GOOGLE_APPLICATION_CREDENTIALS=~/travis.json
 
