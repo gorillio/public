@@ -1,9 +1,10 @@
 #!/bin/bash
-VERSION=1.8.1
+MINIKUBE_VERSION=1.8.1
+KUBE_VERSION=1.18.1
 echo "==============================================================================================================="
 echo " minikube setup"
 echo "==============================================================================================================="
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/v${VERSION}/minikube-linux-amd64 \ 
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/v${MINIKUBE_VERSION}/minikube-linux-amd64 \ 
      && chmod +x minikube \
      && sudo mv minikube /usr/local/bin/
 mkdir -p $HOME/.kube $HOME/.minikube
@@ -11,7 +12,7 @@ touch $KUBECONFIG
 echo "==============================================================================================================="
 echo "minikube start"
 echo "==============================================================================================================="
-sudo minikube start --profile=minikube --vm-driver=none --kubernetes-version=v1.18.1
+sudo minikube start --profile=minikube --vm-driver=none --kubernetes-version=v${KUBE_VERSION}
 minikube update-context --profile=minikube
 sudo chown -R travis: /home/travis/.minikube/
 eval "$(minikube docker-env --profile=minikube)" && export DOCKER_CLI='docker'
