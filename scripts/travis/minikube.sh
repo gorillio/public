@@ -19,7 +19,7 @@ eval "$(minikube docker-env --profile=minikube)" && export DOCKER_CLI='docker'
 echo "==============================================================================================================="
 echo "wait for kube-system pod to be in running state"
 echo "==============================================================================================================="
-JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}'; \
-  until kubectl -n kube-system get pods -lk8s-app=kube-dns -o jsonpath="$JSONPATH" 2>&1 | grep -q "Ready=True"; \
+JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}'
+until kubectl -n kube-system get pods -lk8s-app=kube-dns -o jsonpath="$JSONPATH" 2>&1 | grep -q "Ready=True"; \
   do sleep 5; \
   done;
