@@ -5,7 +5,7 @@ KUBE_VERSION=1.18.1
 echo "==============================================================================================================="
 echo " minikube setup"
 echo "==============================================================================================================="
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0${MINIKUBE_VERSION}/minikube-linux-amd64
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/v${MINIKUBE_VERSION}/minikube-linux-amd64
 chmod +x minikube
 sudo mv minikube /usr/local/bin/
 mkdir -p $HOME/.kube $HOME/.minikube
