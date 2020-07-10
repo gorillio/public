@@ -23,6 +23,8 @@ echo " Staring minikube"
 echo "==============================================================================================================="
 sudo minikube start --profile=minikube --vm-driver=none --kubernetes-version=v${KUBE_VERSION}
 minikube update-context --profile=minikube
+sudo chown -R travis: /home/travis/.minikube/
+eval "$(minikube docker-env --profile=minikube)" && export DOCKER_CLI='docker'
 
 echo "==============================================================================================================="
 echo " Wait for kube-system pod to be in running state"
