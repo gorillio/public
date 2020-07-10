@@ -12,6 +12,7 @@ KUBECONFIG=$HOME/.kube/config
 echo "==============================================================================================================="
 echo " Setup minikube"
 echo "==============================================================================================================="
+sudo apt-get -qq -y install conntrack
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && \
     sudo mv minikube /usr/local/bin/minikube && \
     chmod +x /usr/local/bin/minikube
@@ -22,18 +23,14 @@ echo "==========================================================================
 echo " Staring minikube"
 echo "==============================================================================================================="
 sudo minikube start --profile=minikube --vm-driver=none --kubernetes-version=v${KUBE_VERSION}
-minikube update-context --profile=minikube
 sudo chown -R travis: /home/travis/.minikube/
-eval "$(minikube docker-env --profile=minikube)" && export DOCKER_CLI='docker'
+minikube update-context --profile=minikube
 
 echo "==============================================================================================================="
 echo " Wait for kube-system pod to be in running state"
 echo "==============================================================================================================="
 JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}'
-until kubectl -n kube-system get pods -lk8s-app=kube-dns -o jsonpath="$JSONPATH" 2>&1 | grep -q "Ready=True";  do { 
-  sleep 5; 
+until kubectl -n kube-system get pods -lk8s-app=kube-dns -o jsonpath="$JSONPATH" 2>&1 | grep -q "Ready=True";  do {
+  sleep 5;
   echo "Wating for minikube to be up..."
 } done;
-
-sudo chown -R travis: /home/travis/.minikube/
-eval "$(minikube docker-env --profile=minikube)" && export DOCKER_CLI='docker'
