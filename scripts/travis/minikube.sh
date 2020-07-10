@@ -1,12 +1,13 @@
 #!/bin/bash
 set -e
+
 KUBE_VERSION=1.18.1
+
 echo "==============================================================================================================="
-echo " minikube setup"
+echo " Setup minikube"
 echo "==============================================================================================================="
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-chmod +x minikube
-sudo mv minikube /usr/local/bin/
+curl -Lo /usr/local/bin/minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && \
+    chmod +x /usr/local/bin/minikub
 mkdir -p $HOME/.kube $HOME/.minikube
 touch $KUBECONFIG
 echo "==============================================================================================================="
