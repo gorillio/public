@@ -2,12 +2,19 @@
 set -e
 
 KUBE_VERSION=1.18.1
+CHANGE_MINIKUBE_NONE_USER=true
+MINIKUBE_WANTUPDATENOTIFICATION=false
+MINIKUBE_WANTREPORTERRORPROMPT=false
+MINIKUBE_HOME=$HOME
+CHANGE_MINIKUBE_NONE_USER=true
+KUBECONFIG=$HOME/.kube/config
 
 echo "==============================================================================================================="
 echo " Setup minikube"
 echo "==============================================================================================================="
 curl -Lo /usr/local/bin/minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && \
-    chmod +x /usr/local/bin/minikub
+    chmod +x /usr/local/bin/minikube && \
+    sudo mv minikube /usr/local/bin/
 mkdir -p $HOME/.kube $HOME/.minikube
 touch $KUBECONFIG
 
