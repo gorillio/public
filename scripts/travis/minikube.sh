@@ -12,8 +12,9 @@ KUBECONFIG=$HOME/.kube/config
 echo "==============================================================================================================="
 echo " Setup minikube"
 echo "==============================================================================================================="
-sudo curl -Lo /usr/local/bin/minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && \
-    chmod +x /usr/local/bin/minikube && \
+curl -Lo  https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && \
+    sudo mv minikube /usr/local/bin/minikube && \
+    chmod +x /usr/local/bin/minikube
 mkdir -p $HOME/.kube $HOME/.minikube
 touch $KUBECONFIG
 
