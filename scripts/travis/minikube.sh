@@ -12,6 +12,7 @@ KUBECONFIG=$HOME/.kube/config
 echo "==============================================================================================================="
 echo " Setup minikube"
 echo "==============================================================================================================="
+sudo apt-get update
 sudo apt-get -qq -y install conntrack
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && \
     sudo mv minikube /usr/local/bin/minikube && \
