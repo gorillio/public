@@ -34,6 +34,14 @@ openssl aes-256-cbc -K $ENC_KEY -iv $ENC_IV -in $ENC_FILE -out ${HOME}/travis.js
 cat ~/travis.json | docker login -u _json_key --password-stdin https://gcr.io
 
 echo "==============================================================================================================="
+echo "Setup Yq"
+echo "==============================================================================================================="
+YQ_VERSION="3.3.0"
+sudo wget -O /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64
+sudo chmod +x /usr/local/bin/yq
+
+echo
+echo "==============================================================================================================="
 echo "Env Variables"
 echo "==============================================================================================================="
 
