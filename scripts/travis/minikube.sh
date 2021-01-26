@@ -23,7 +23,7 @@ touch $KUBECONFIG
 echo "==============================================================================================================="
 echo " Staring minikube"
 echo "==============================================================================================================="
-sudo minikube start --profile=minikube --vm-driver=none --kubernetes-version=v${KUBE_VERSION}
+sudo minikube start --profile=minikube --vm-driver=none --kubernetes-version=v${KUBE_VERSION} --extra-config=kubeadm.ignore-preflight-errors=NumCPU --force --cpus 1
 sudo chown -R travis: /home/travis/.minikube/
 minikube update-context --profile=minikube
 
