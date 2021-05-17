@@ -25,21 +25,3 @@ echo "Docker Compose for BUILDKIT support: Version: ${DOCKER_COMPOSE_VERSION}"
 echo "==============================================================================================================="
 sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 docker-compose version
-
-echo "==============================================================================================================="
-echo "Setup GCloud"
-echo "==============================================================================================================="
-
-openssl aes-256-cbc -K $ENC_KEY -iv $ENC_IV -in $ENC_FILE -out ${HOME}/travis.json -d
-cat ~/travis.json | docker login -u _json_key --password-stdin https://gcr.io
-
-echo "==============================================================================================================="
-echo "Env Variables"
-echo "==============================================================================================================="
-
-export SHORT_SHA=$(git rev-parse --short HEAD)
-export SHA=$(git rev-parse HEAD)
-export DOCKER_BUILDKIT=1
-export COMPOSE_DOCKER_CLI_BUILD=1
-export GOOGLE_APPLICATION_CREDENTIALS=~/travis.json
-
