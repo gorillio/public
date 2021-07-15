@@ -31,7 +31,7 @@ echo "==========================================================================
 echo "Setup Conftest"
 echo "==============================================================================================================="
 wget https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_linux_amd64.deb
-dpkg -i conftest_${CONFTEST_VERSION}_linux_amd64.deb
+sudo dpkg -i conftest_${CONFTEST_VERSION}_linux_amd64.deb
 
 echo "==============================================================================================================="
 echo "Setup GCloud"
