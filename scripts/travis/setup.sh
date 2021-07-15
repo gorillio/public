@@ -26,6 +26,13 @@ echo "==========================================================================
 sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 docker-compose version
 
+CONFTEST_VERSION="0.25.0"
+echo "==============================================================================================================="
+echo "Setup Conftest"
+echo "==============================================================================================================="
+wget https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_linux_amd64.deb
+dpkg -i conftest_${CONFTEST_VERSION}_linux_amd64.deb
+
 echo "==============================================================================================================="
 echo "Setup GCloud"
 echo "==============================================================================================================="
