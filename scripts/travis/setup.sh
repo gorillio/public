@@ -11,7 +11,7 @@ sudo apt-get -qq update
 sudo apt-get -qq -y -o Dpkg::Options::="--force-confnew" install docker-ce=${DOCKER_VERSION}
 docker --version
 
-echo "================================================================"==============================================="
+echo "==============================================================================================================="
 echo "Clear out the setting 'registry-mirrors' from docker config file which causes buildkit to fail see https://github.com/moby/moby/issues/39120"
 echo "==============================================================================================================="
 sudo bash -c "echo -e '{\n\"registry-mirrors\":[\"https://mirror.gcr.io\"]\n}' > /etc/docker/daemon.json"
