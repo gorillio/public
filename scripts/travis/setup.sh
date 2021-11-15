@@ -14,12 +14,13 @@ docker --version
 echo "==============================================================================================================="
 echo "Clear out the setting 'registry-mirrors' from docker config file which causes buildkit to fail see https://github.com/moby/moby/issues/39120"
 echo "==============================================================================================================="
-sudo bash -c "echo '{}' > /etc/docker/daemon.json"
+sudo bash -c "echo -e '{\n\"mtu\":1500,\n\"registry-mirrors\":[\"https://mirror.gcr.io\"]\n}' > /etc/docker/daemon.json";
 
 echo "==============================================================================================================="
 echo "Restarting Docker service to put in effect"
 echo "==============================================================================================================="
 sudo service docker restart
+docker system info
 
 DOCKER_COMPOSE_VERSION="1.25.5"
 echo "==============================================================================================================="
