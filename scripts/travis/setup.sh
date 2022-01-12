@@ -36,6 +36,13 @@ echo "==========================================================================
 wget https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_linux_amd64.deb
 sudo dpkg -i conftest_${CONFTEST_VERSION}_linux_amd64.deb
 
+TRIVY_VERSION="0.22.0"
+echo "==============================================================================================================="
+echo "Setup Trivy"
+echo "==============================================================================================================="
+wget https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.deb
+sudo dpkg -i trivy_${TRIVY_VERSION}_Linux-64bit.deb
+
 echo "==============================================================================================================="
 echo "Setup GCloud"
 echo "==============================================================================================================="
